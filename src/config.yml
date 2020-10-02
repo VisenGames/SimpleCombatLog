@@ -1,0 +1,10 @@
+combatTime: 10000
+inCombatMessage: "&b%player% &7Has combat tagged you"
+tagCombatMessage: "&7You combat tagged &bPlayer"
+broadcastMessage: "&c%player% &7has log out while in combat"
+allowedCommands:
+  - msg
+  - ct
+  - tag
+  - combattime
+  - tell

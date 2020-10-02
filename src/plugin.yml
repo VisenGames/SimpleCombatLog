@@ -1,0 +1,8 @@
+name: SimpleCombatTag
+author: VisenGames
+main: games.visen.simplecombatlog.Main
+version: 1.0
+commands:
+  combattime:
+    aliases: [ct, tag]
+    usage: "/ct"
