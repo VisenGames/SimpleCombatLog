@@ -22,11 +22,9 @@ public class PlayerQuitEventL implements Listener {
     public void onPlayerQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
         CombatPlayer combatPlayer = CombatPlayer.getCombatPlayer(player);
-        if(combatPlayer != null) {
-            if(combatPlayer.inCombat) {
-                player.setHealth(0);
-                Bukkit.broadcastMessage(Utils.color(Main.getPluginConfig().getString("broadcastMessage").replace("%player%", player.getName())));
-            }
+        if(combatPlayer.inCombat) {
+            player.setHealth(0);
+            Bukkit.broadcastMessage(Utils.color(Main.getPluginConfig().getString("broadcastMessage").replace("%player%", player.getName())));
         }
     }
 }

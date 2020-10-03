@@ -36,7 +36,9 @@ public class TimeCommand implements CommandExecutor {
                 Utils.message(player, "&cYou are not in combat!");
                 return true;
             }
-            Utils.message(player, "&cTime remaining: " + combatPlayer.getFormatedTime());
+            if(combatPlayer.getFormatedTime(true, combatPlayer.startTime, "combatTime") != null) {
+                Utils.message(player, "&cTime remaining: " + combatPlayer.getFormatedTime(combatPlayer.inCombat, combatPlayer.startTime, "combatTime"));
+            }
             return true;
     }
 

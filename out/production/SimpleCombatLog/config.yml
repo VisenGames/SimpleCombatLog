@@ -1,6 +1,8 @@
-combatTime: 10000
+combatTime: 30
+gappleTime: 10
+pearlTime: 10
 inCombatMessage: "&b%player% &7Has combat tagged you"
-tagCombatMessage: "&7You combat tagged &bPlayer"
+tagCombatMessage: "&7You combat tagged &b%player%"
 broadcastMessage: "&c%player% &7has log out while in combat"
 allowedCommands:
   - msg

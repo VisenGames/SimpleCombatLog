@@ -2,9 +2,8 @@ package games.visen.simplecombatlog;
 
 import games.visen.simplecombatlog.commands.TimeCommand;
 import games.visen.simplecombatlog.core.CombatPlayer;
-import games.visen.simplecombatlog.events.PlayerCommandPreprocessEventL;
-import games.visen.simplecombatlog.events.PlayerDamageEventL;
-import games.visen.simplecombatlog.events.PlayerQuitEventL;
+import games.visen.simplecombatlog.events.*;
+import games.visen.simplecombatlog.hooks.PlaceHolderAPI;
 import games.visen.simplecombatlog.utils.Config;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -26,7 +25,10 @@ public class Main extends JavaPlugin {
         new PlayerDamageEventL(this);
         new PlayerQuitEventL(this);
         new PlayerCommandPreprocessEventL(this);
+        new PlayerItemConsumeEventL(this);
+        new PlayerInteractEventL(this);
         new TimeCommand(this);
+        new PlaceHolderAPI(this).register();
 
     }
 

@@ -3,9 +3,9 @@ package games.visen.simplecombatlog.utils;
 import games.visen.simplecombatlog.Main;
 
 public class TimeFormater {
-    public static String formatTime(long starttime, long endtime) {
+    public static String formatTime(long starttime, long endtime, String ct) {
         String formatedTime = "";
-        long totaltime = (Main.getPluginConfig().getInt("combatTime") * 1000) - (endtime - starttime);
+        long totaltime = (Main.getPluginConfig().getInt(ct) * 1000) - (endtime - starttime);
         long seconds = totaltime / 1000;
         long hours = seconds / 3600;
         seconds -= hours * 3600;
