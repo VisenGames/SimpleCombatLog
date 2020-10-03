@@ -4,6 +4,7 @@ pearlTime: 10
 inCombatMessage: "&b%player% &7Has combat tagged you"
 tagCombatMessage: "&7You combat tagged &b%player%"
 broadcastMessage: "&c%player% &7has log out while in combat"
+actionBar: "&cYou are in combat"
 allowedCommands:
   - msg
   - ct

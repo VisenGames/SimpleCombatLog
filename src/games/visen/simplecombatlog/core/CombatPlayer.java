@@ -1,6 +1,7 @@
 package games.visen.simplecombatlog.core;
 
 import games.visen.simplecombatlog.Main;
+import games.visen.simplecombatlog.utils.ActionbarAPI;
 import games.visen.simplecombatlog.utils.TimeFormater;
 import games.visen.simplecombatlog.utils.Utils;
 import org.bukkit.Bukkit;
@@ -12,6 +13,8 @@ public class CombatPlayer {
 
     public BukkitTask task;
 
+    public BukkitTask combatUpdater;
+
     public BukkitTask gappleTask;
 
     public BukkitTask pearlTask;
@@ -19,6 +22,7 @@ public class CombatPlayer {
     public Player player;
 
     public OfflinePlayer offlinePlayer;
+
 
     public long gappleTime = -1;
 
@@ -31,6 +35,8 @@ public class CombatPlayer {
     public boolean gappleCooldown = false;
 
     public boolean enderPearlCooldown = false;
+
+    public boolean killedbyLoggin = false;
 
     public CombatPlayer(Player p) {
         this.player = p;
@@ -52,11 +58,22 @@ public class CombatPlayer {
         if(task != null) {
             task.cancel();
         }
+        if(combatUpdater != null) {
+            combatUpdater.cancel();
+        }
+        Main.getActionbarAPI().sendActionBar(this.player, Utils.color(Main.getPluginConfig().getString("actionBar")));
         task = Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> {
             this.inCombat = false;
             this.startTime = -1;
             Utils.message(this.player, "&cYou are no longer in combat!");
+            if(combatUpdater != null) {
+                combatUpdater.cancel();
+            }
+            Main.getActionbarAPI().sendActionBar(this.player, "");
         }, 20 * Main.getPluginConfig().getInt("combatTime"));
+        combatUpdater = Bukkit.getScheduler().runTaskTimer(Main.getInstance(), () -> {
+            Main.getActionbarAPI().sendActionBar(this.player, Utils.color("In combat for: &c" + getFormatedTime(inCombat, startTime, "combatTime")));
+        }, 20, 20);
     }
 
     public void setPlayerGapple() {

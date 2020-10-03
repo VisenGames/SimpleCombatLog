@@ -2,6 +2,7 @@ package games.visen.simplecombatlog.hooks;
 
 import games.visen.simplecombatlog.Main;
 import games.visen.simplecombatlog.core.CombatPlayer;
+import games.visen.simplecombatlog.utils.Utils;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
 
@@ -45,15 +46,24 @@ public class PlaceHolderAPI extends PlaceholderExpansion {
         CombatPlayer combatPlayer = CombatPlayer.getCombatPlayer(player);
 
         if(identifier.equals("time")) {
-            return combatPlayer.getFormatedTime(combatPlayer.inCombat, combatPlayer.startTime, "combatTime");
+            if(combatPlayer.inCombat) {
+                return combatPlayer.getFormatedTime(true, combatPlayer.startTime, "combatTime");
+            }
+            return "Not in combat!";
         }
 
         if(identifier.equals("gapple")) {
-            return combatPlayer.getFormatedTime(combatPlayer.gappleCooldown, combatPlayer.gappleTime, "gappleTime");
+            if(combatPlayer.gappleCooldown) {
+                return combatPlayer.getFormatedTime(true, combatPlayer.gappleTime, "gappleTime");
+            }
+            return Utils.color("&aAvailable");
         }
 
         if(identifier.equals("pearl")) {
-            return combatPlayer.getFormatedTime(combatPlayer.enderPearlCooldown, combatPlayer.enderPearlTime, "pearlTime");
+            if(combatPlayer.enderPearlCooldown) {
+                return combatPlayer.getFormatedTime(true, combatPlayer.enderPearlTime, "pearlTime");
+            }
+            return Utils.color("&aAvailable");
         }
 
         return "Not Found";

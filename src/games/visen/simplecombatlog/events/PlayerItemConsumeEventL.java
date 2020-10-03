@@ -31,7 +31,9 @@ public class PlayerItemConsumeEventL implements Listener {
                     event.setCancelled(true);
                     Utils.message(player, "&cYou cant eat this for: " + combatPlayer.getFormatedTime(combatPlayer.gappleCooldown, combatPlayer.gappleTime, "gappleTime"));
                 } else {
-                    combatPlayer.setPlayerGapple();
+                    if(!player.hasPermission("simplecombatlog.bypass")) {
+                        combatPlayer.setPlayerGapple();
+                    }
                 }
             }
         }

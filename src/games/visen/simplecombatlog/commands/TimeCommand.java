@@ -28,10 +28,6 @@ public class TimeCommand implements CommandExecutor {
             }
             Player player = (Player) sender;
             CombatPlayer combatPlayer = CombatPlayer.getCombatPlayer(player);
-            if(combatPlayer == null) {
-                combatPlayer = new CombatPlayer(player);
-                Main.combatPlayers.add(combatPlayer);
-            }
             if(!combatPlayer.inCombat) {
                 Utils.message(player, "&cYou are not in combat!");
                 return true;

@@ -31,7 +31,9 @@ public class PlayerInteractEventL implements Listener {
                         event.setCancelled(true);
                         Utils.message(player, "&cYou cant use this for: " + combatPlayer.getFormatedTime(combatPlayer.enderPearlCooldown, combatPlayer.enderPearlTime, "pearlTime"));
                     } else {
-                        combatPlayer.setPlayerPearl();
+                        if(!player.hasPermission("simplecombatlog.bypass")) {
+                            combatPlayer.setPlayerPearl();
+                        }
                     }
                 }
             }
